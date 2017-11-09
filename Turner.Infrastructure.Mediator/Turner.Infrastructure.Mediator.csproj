@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Turner.Infrastructure.Mediator</AssemblyName>
     <Authors>Turner Development Team</Authors>
     <Company>Turner Industries Group, LLC</Company>
@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="7.2.0-beta3" />
-    <PackageReference Include="Hangfire.Core" Version="1.6.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
-    <PackageReference Include="SimpleInjector" Version="4.0.8" />
+    <PackageReference Include="FluentValidation" Version="7.2.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.6.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="SimpleInjector" Version="4.0.12" />
   </ItemGroup>
 
 </Project>
