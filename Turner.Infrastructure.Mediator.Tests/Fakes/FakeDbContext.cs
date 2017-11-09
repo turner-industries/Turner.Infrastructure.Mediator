@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
@@ -7,6 +8,13 @@ namespace Turner.Infrastructure.Mediator.Tests.Fakes
 {
     public class FakeDbContext : DbContext
     {
+        private readonly FakeDatabaseFacade _fakeDatabaseFacade;
+
+        public FakeDbContext()
+        {
+            _fakeDatabaseFacade = new FakeDatabaseFacade(this);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.ConfigureWarnings(builder => builder.Ignore(InMemoryEventId.TransactionIgnoredWarning));
@@ -14,7 +22,7 @@ namespace Turner.Infrastructure.Mediator.Tests.Fakes
             base.OnConfiguring(optionsBuilder);
         }
 
-        public override DatabaseFacade Database => new FakeDatabaseFacade(this);
+        public override DatabaseFacade Database => _fakeDatabaseFacade;
     }
 
     public class FakeDatabaseFacade : DatabaseFacade
