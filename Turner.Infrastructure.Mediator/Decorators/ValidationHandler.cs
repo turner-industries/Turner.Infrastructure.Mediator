@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Turner.Infrastructure.Mediator.Decorators
 {
-	public class ValidationBaseHandler<TRequest, TResult> where TResult : Response, new()
+    public class ValidationBaseHandler<TRequest, TResult> where TResult : Response, new()
     {
         private readonly Container _container;
 
@@ -17,7 +17,7 @@ namespace Turner.Infrastructure.Mediator.Decorators
 
         public Task<TResult> HandleAsync(TRequest request, Func<Task<TResult>> processRequest)
         {
-			var validator = _container.GetInstance<IValidator<TRequest>>();
+            var validator = _container.GetInstance<IValidator<TRequest>>();
 
             var validationResult = validator.Validate(request);
             if (validationResult.IsValid)

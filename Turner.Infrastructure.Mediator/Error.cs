@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Turner.Infrastructure.Mediator
@@ -11,36 +10,24 @@ namespace Turner.Infrastructure.Mediator
         
         public static Response AsResponse(string errorMessage, string propertyName = "")
         {
-            var result = new Response
+            var error = new Error
             {
-                Errors = new List<Error>
-                {
-                    new Error
-                    {
-                        PropertyName = propertyName,
-                        ErrorMessage = errorMessage
-                    }
-                }
+                PropertyName = propertyName,
+                ErrorMessage = errorMessage
             };
 
-            return result;
+            return error.AsResponse();
         }
 
         public static Response<TResult> AsResponse<TResult>(string errorMessage, string propertyName = "")
         {
-            var result = new Response<TResult>
+            var error = new Error
             {
-                Errors = new List<Error>
-                {
-                    new Error
-                    {
-                        PropertyName = propertyName,
-                        ErrorMessage = errorMessage
-                    }
-                }
+                PropertyName = propertyName,
+                ErrorMessage = errorMessage
             };
 
-            return result;
+            return error.AsResponse<TResult>();
         }
 
         public static Task<Response> AsResponseAsync(string errorMessage, string propertyName = "")

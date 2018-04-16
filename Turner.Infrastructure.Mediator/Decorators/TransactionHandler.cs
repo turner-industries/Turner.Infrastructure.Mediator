@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Turner.Infrastructure.Mediator.Decorators
 {
-	public class TransactionBaseHandler<TRequest, TResult> where TResult : Response, new()
+    public class TransactionBaseHandler<TRequest, TResult> where TResult : Response, new()
     {
         private readonly DbContext _context;
 
@@ -28,7 +28,7 @@ namespace Turner.Infrastructure.Mediator.Decorators
                     transaction.Rollback();
                     return result;
                 }
-				
+                
                 transaction.Commit();
                 return result;
             }
