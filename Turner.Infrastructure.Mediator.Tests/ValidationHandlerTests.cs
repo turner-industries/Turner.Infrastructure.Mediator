@@ -58,7 +58,7 @@ namespace Turner.Infrastructure.Mediator.Tests
     {
         public Task<Response> HandleAsync(NonValidatedRequest request)
         {
-            return request.SuccessAsync();
+            return Response.SuccessAsync();
         }
     }
 
@@ -75,7 +75,7 @@ namespace Turner.Infrastructure.Mediator.Tests
     {
         public Task<Response> HandleAsync(ValidatedRequest request)
         {
-            return request.SuccessAsync();
+            return Response.SuccessAsync();
         }
     }
 
