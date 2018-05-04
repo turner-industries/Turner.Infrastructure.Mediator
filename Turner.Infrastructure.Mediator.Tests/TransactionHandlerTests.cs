@@ -68,7 +68,7 @@ namespace Turner.Infrastructure.Mediator.Tests
     {
         public Task<Response> HandleAsync(FirstRequest request)
         {
-            return request.SuccessAsync();
+            return Response.SuccessAsync();
         }
     }
 
@@ -101,7 +101,7 @@ namespace Turner.Infrastructure.Mediator.Tests
     {
         public Task<Response> HandleAsync(ErrorRequest request)
         {
-            return request.HasErrorAsync("Error.");
+            return Error.AsResponseAsync("Error.");
         }
     }
 }
