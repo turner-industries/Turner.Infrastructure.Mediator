@@ -1,35 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Turner.Infrastructure.Mediator.Decorators
 {
     public class TransactionBaseHandler<TRequest, TResult> where TResult : Response, new()
     {
-        private readonly DbContext _context;
-
-        public TransactionBaseHandler(DbContext context)
-        {
-            _context = context;
-        }
-
         public async Task<TResult> HandleAsync(TRequest request, Func<Task<TResult>> processRequest)
         {
-            if (_context.Database.CurrentTransaction != null)
+            if (Transaction.Current != null)
             {
                 return await processRequest();
             }
-            
-            using (var transaction = _context.Database.BeginTransaction())
+
+            using (var scope = new TransactionScope(TransactionScopeOption.Required))
             {
                 var result = await processRequest();
                 if (result.HasErrors)
                 {
-                    transaction.Rollback();
+                    scope.Dispose();
                     return result;
                 }
-                
-                transaction.Commit();
+
+                scope.Complete();
                 return result;
             }
         }

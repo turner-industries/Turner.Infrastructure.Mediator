@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turner.Infrastructure.Media
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{D8226804-6BCB-4BE8-A501-8D716A0CCF30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turner.Infrastructure.Mediator.BackgroundJobs", "Turner.Infrastructure.Mediator.BackgroundJobs\Turner.Infrastructure.Mediator.BackgroundJobs.csproj", "{2BB7FC97-82DB-46C7-8BB7-C9FAE168CCA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BB7FC97-82DB-46C7-8BB7-C9FAE168CCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB7FC97-82DB-46C7-8BB7-C9FAE168CCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB7FC97-82DB-46C7-8BB7-C9FAE168CCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB7FC97-82DB-46C7-8BB7-C9FAE168CCA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
