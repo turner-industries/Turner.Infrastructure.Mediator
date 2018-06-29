@@ -39,7 +39,7 @@ namespace Turner.Infrastructure.Mediator.Tests
     {
         public Task<Response> HandleAsync(RequestWithoutResponse request)
         {
-            return request.SuccessAsync();
+            return Response.SuccessAsync();
         }
     }
 

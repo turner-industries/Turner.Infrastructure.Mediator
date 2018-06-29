@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Turner.Infrastructure.Mediator.Decorators
 {
@@ -29,8 +28,7 @@ namespace Turner.Infrastructure.Mediator.Decorators
                     transaction.Rollback();
                     return result;
                 }
-
-                await _context.SaveChangesAsync();
+                
                 transaction.Commit();
                 return result;
             }
