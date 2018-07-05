@@ -25,7 +25,8 @@ namespace Turner.Infrastructure.Mediator.Mediators
             foreach (var assembly in assemblies)
             {
                 var classTypes = assembly.GetTypes()
-                    .Where(type => type.IsClass && !type.IsAbstract && !type.IsInterface);
+                    .Where(type => type.IsClass && !type.IsAbstract && !type.IsInterface)
+                    .ToArray();
 
                 foreach (var type in classTypes
                     .SelectMany(type => type.GetInterfaces()
