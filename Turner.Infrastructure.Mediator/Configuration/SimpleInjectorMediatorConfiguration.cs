@@ -22,7 +22,7 @@ namespace Turner.Infrastructure.Mediator.Configuration
         public static void ConfigureStaticMediator(this Container container, Assembly[] assemblies)
         {
             container.RegisterSingleton<IStaticDispatcher>(
-                () => new StaticDispatcher(container.GetInstance, assemblies));
+                new StaticDispatcher(container.GetInstance, assemblies));
 
             container.Register<IMediator>(
                 () => new StaticDispatchMediator(container.GetInstance<IStaticDispatcher>()));
