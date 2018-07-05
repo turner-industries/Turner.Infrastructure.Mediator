@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Turner.Infrastructure.Mediator.Mediators
+namespace Turner.Infrastructure.Mediator
 {
     public class DynamicDispatchMediator : IMediator
     {

@@ -1,7 +1,6 @@
 ﻿using SimpleInjector;
 using System.Reflection;
 using Turner.Infrastructure.Mediator.Decorators;
-using Turner.Infrastructure.Mediator.Mediators;
 
 namespace Turner.Infrastructure.Mediator.Configuration
 {

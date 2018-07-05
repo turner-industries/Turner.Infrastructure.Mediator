@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Expr = System.Linq.Expressions.Expression;
 
-namespace Turner.Infrastructure.Mediator.Mediators
+namespace Turner.Infrastructure.Mediator
 {
     public class StaticDispatcher : IStaticDispatcher
     {

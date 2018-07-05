@@ -1,4 +1,4 @@
-﻿namespace Turner.Infrastructure.Mediator.Mediators
+﻿namespace Turner.Infrastructure.Mediator
 {
     public interface IStaticDispatcher
     {
