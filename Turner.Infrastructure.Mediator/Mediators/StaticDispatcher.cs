@@ -18,46 +18,43 @@ namespace Turner.Infrastructure.Mediator
         public object Dispatch(object request) =>
             _dispatchers[request.GetType()](request);
 
-        private void Register(Func<Type, object> handlerFactory, Assembly[] assemblies)
+        private void Register(Func<Type, object> handlerFactory, IEnumerable<Assembly> assemblies)
         {
             _dispatchers = new Dictionary<Type, Func<object, object>>();
 
-            foreach (var assembly in assemblies)
+            var classTypes = assemblies
+                .SelectMany(x => x.GetTypes())
+                .Where(type => type.IsClass && !type.IsAbstract && !type.IsInterface)
+                .ToArray();
+
+            var requestTypesWithoutResult = classTypes
+                .SelectMany(type => type.GetInterfaces()
+                    .Where(t => t.IsGenericType && typeof(IRequestHandler<>) == t.GetGenericTypeDefinition()))
+                .Select(type => type.GenericTypeArguments);
+
+            foreach (var types in requestTypesWithoutResult)
             {
-                var classTypes = assembly.GetTypes()
-                    .Where(type => type.IsClass && !type.IsAbstract && !type.IsInterface)
-                    .ToArray();
+                var requestType = types[0];
+                var handlerType = typeof(IRequestHandler<>).MakeGenericType(requestType);
 
-                foreach (var type in classTypes
-                    .SelectMany(type => type.GetInterfaces()
-                        .Where(t => t.IsGenericType && typeof(IRequestHandler<>) == t.GetGenericTypeDefinition()))
-                    .Select(type => type.GetGenericArguments().First()))
-                {
-                    RegisterType(type, handlerFactory);
-                }
+                _dispatchers[requestType] = CreateDispatcher(handlerType, requestType, handlerFactory);
+            }
 
-                foreach (var types in classTypes
-                    .SelectMany(type => type.GetInterfaces()
-                        .Where(t => t.IsGenericType && typeof(IRequestHandler<,>) == t.GetGenericTypeDefinition()))
-                    .Select(type => type.GetGenericArguments()))
-                {
-                    RegisterType(types[0], types[1], handlerFactory);
-                }
+            var requestTypesWithResult = classTypes
+                .SelectMany(type => type.GetInterfaces()
+                    .Where(t => t.IsGenericType && typeof(IRequestHandler<,>) == t.GetGenericTypeDefinition()))
+                .Select(type => type.GenericTypeArguments);
+
+            foreach (var types in requestTypesWithResult)
+            {
+                var requestType = types[0];
+                var resultType = types[1];
+                var handlerType = typeof(IRequestHandler<,>).MakeGenericType(requestType, resultType);
+
+                _dispatchers[requestType] = CreateDispatcher(handlerType, requestType, handlerFactory);
             }
         }
 
-        private void RegisterType(Type requestType, Func<Type, object> handlerFactory)
-        {
-            var handlerType = typeof(IRequestHandler<>).MakeGenericType(requestType);
-            _dispatchers[requestType] = CreateDispatcher(handlerType, requestType, handlerFactory);
-        }
-
-        private void RegisterType(Type requestType, Type resultType, Func<Type, object> handlerFactory)
-        {
-            var handlerType = typeof(IRequestHandler<,>).MakeGenericType(requestType, resultType);
-            _dispatchers[requestType] = CreateDispatcher(handlerType, requestType, handlerFactory);
-        }
-        
         private static Func<object, object> CreateDispatcher(Type handlerType, Type requestType, Func<Type, object> handlerFactory)
         {
             var handleAsyncMethod = handlerType.GetMethod("HandleAsync", new[] { requestType })
