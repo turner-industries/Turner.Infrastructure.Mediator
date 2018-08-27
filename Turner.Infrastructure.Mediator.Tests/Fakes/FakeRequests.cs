@@ -1,35 +1,8 @@
 ﻿using System.Threading.Tasks;
-using NUnit.Framework;
-using Shouldly;
 using Turner.Infrastructure.Mediator.Decorators;
 
-namespace Turner.Infrastructure.Mediator.Tests
+namespace Turner.Infrastructure.Mediator.Tests.Fakes
 {
-    [TestFixture]
-    public class MediatorPipelineTests : BaseUnitTest
-    {
-        [Test]
-        public async Task Handle_NoResponseData_ReturnsResponseObject()
-        {
-            // Act
-            var response = await Mediator.HandleAsync(new RequestWithoutResponse());
-
-            // Assert
-            response.HasErrors.ShouldBe(false);
-        }
-
-        [Test]
-        public async Task Handle_HasResponseData_ReturnsResponseObjectWithData()
-        {
-            // Act
-            var response = await Mediator.HandleAsync(new RequestWithResponse());
-
-            // Assert
-            response.HasErrors.ShouldBe(false);
-            response.Data.ShouldBe("Bar");
-        }
-    }
-
     [DoNotValidate]
     public class RequestWithoutResponse : IRequest
     {
