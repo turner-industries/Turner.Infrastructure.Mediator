@@ -38,8 +38,6 @@ namespace Turner.Infrastructure.Mediator.Configuration
             container.Register(typeof(IRequestHandler<,>), assemblies);
             container.RegisterDecorator(typeof(IRequestHandler<>), typeof(ValidationHandler<>), ShouldValidate);
             container.RegisterDecorator(typeof(IRequestHandler<,>), typeof(ValidationHandler<,>), ShouldValidate);
-            container.RegisterDecorator(typeof(IRequestHandler<>), typeof(TransactionHandler<>));
-            container.RegisterDecorator(typeof(IRequestHandler<,>), typeof(TransactionHandler<,>));
         }
     }
 }
