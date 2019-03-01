@@ -2,11 +2,11 @@
 using System.Reflection;
 using Turner.Infrastructure.Mediator.Decorators;
 
-namespace Turner.Infrastructure.Mediator.Configuration.EF
+namespace Turner.Infrastructure.Mediator.Configuration
 {
     public static class SimpleInjectorMediatorConfiguration
     {
-        private static void RegisterTransactionHandlers(this Container container, Assembly[] assemblies)
+        public static void RegisterTransactionHandlers(this Container container, Assembly[] assemblies)
         {
             container.RegisterDecorator(typeof(IRequestHandler<>), typeof(TransactionHandler<>));
             container.RegisterDecorator(typeof(IRequestHandler<,>), typeof(TransactionHandler<,>));
