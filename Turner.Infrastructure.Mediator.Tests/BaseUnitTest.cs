@@ -17,10 +17,12 @@ namespace Turner.Infrastructure.Mediator.Tests
         public void SetUp()
         {
             Container = new Container();
-            Container.ConfigureMediator(new[]
+            var assemblies = new[]
             {
                 GetType().GetTypeInfo().Assembly
-            });
+            };
+            Container.ConfigureMediator(assemblies);
+            Container.RegisterTransactionHandlers(assemblies);
             Container.RegisterSingleton<DbContext>(() => new FakeDbContext());
         }
     }

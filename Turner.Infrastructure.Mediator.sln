@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turner.Infrastructure.Media
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{D8226804-6BCB-4BE8-A501-8D716A0CCF30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turner.Infrastructure.Mediator.Hangfire", "Turner.Infrastructure.Mediator.Hangfire\Turner.Infrastructure.Mediator.Hangfire.csproj", "{195C02E6-42FE-4BF7-A49F-9A22F54E2C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turner.Infrastructure.Mediator.EntityFrameworkCore", "Turner.Infrastructure.Mediator.EntityFrameworkCore\Turner.Infrastructure.Mediator.EntityFrameworkCore.csproj", "{3D197A9A-EF53-4A2F-B68C-88CBD606B1D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,14 @@ Global
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67DFCCE-0F3C-4798-BC94-B7E1C67BDF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195C02E6-42FE-4BF7-A49F-9A22F54E2C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195C02E6-42FE-4BF7-A49F-9A22F54E2C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195C02E6-42FE-4BF7-A49F-9A22F54E2C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195C02E6-42FE-4BF7-A49F-9A22F54E2C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D197A9A-EF53-4A2F-B68C-88CBD606B1D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D197A9A-EF53-4A2F-B68C-88CBD606B1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D197A9A-EF53-4A2F-B68C-88CBD606B1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D197A9A-EF53-4A2F-B68C-88CBD606B1D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
