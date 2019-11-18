@@ -4,6 +4,14 @@ namespace Turner.Infrastructure.Mediator
 {
     public class Error
     {
+        public Error() { }
+
+        public Error(string errorMessage, string propertyName = "")
+        {
+            ErrorMessage = errorMessage;
+            PropertyName = propertyName;
+        }
+
         public string PropertyName { get; set; }
 
         public string ErrorMessage { get; set; }
@@ -16,7 +24,7 @@ namespace Turner.Infrastructure.Mediator
                 ErrorMessage = errorMessage
             };
 
-            return error.AsResponse();
+            return error.AsErrorResponse();
         }
 
         public static Response<TResult> AsResponse<TResult>(string errorMessage, string propertyName = "")
@@ -27,7 +35,7 @@ namespace Turner.Infrastructure.Mediator
                 ErrorMessage = errorMessage
             };
 
-            return error.AsResponse<TResult>();
+            return error.AsErrorResponse<TResult>();
         }
 
         public static Task<Response> AsResponseAsync(string errorMessage, string propertyName = "")
