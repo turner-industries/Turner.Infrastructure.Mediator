@@ -30,7 +30,7 @@ namespace Turner.Infrastructure.Mediator
 
             var classTypes = assemblies
                 .SelectMany(x => x.GetTypes())
-                .Where(type => type.IsClass && !type.IsAbstract && !type.IsInterface)
+                .Where(type => type.IsClass && !type.IsAbstract)
                 .ToArray();
 
             var requestTypesWithoutResult = classTypes
