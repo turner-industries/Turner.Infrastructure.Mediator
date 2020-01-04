@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace Turner.Infrastructure.Mediator.BackgroundJobs
 {
-    public class BackgoundJobExecutor<T> where T : IRequest
+    public class BackgroundJobExecutor<T> where T : IRequest
     {
         private readonly IMediator _mediator;
 
-        public BackgoundJobExecutor(IMediator mediator)
+        public BackgroundJobExecutor(IMediator mediator)
         {
             _mediator = mediator;
         }
